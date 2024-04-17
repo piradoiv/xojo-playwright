@@ -122,6 +122,21 @@ End
 #tag EndWebContainerControl
 
 #tag WindowCode
+	#tag Event
+		Sub Opening()
+		  UpdateCounterLabel
+		End Sub
+	#tag EndEvent
+
+
+	#tag Method, Flags = &h21
+		Private Sub UpdateCounterLabel()
+		  Label2.Text = TextArea1.Text.Length.ToString
+		  Label2.TextColor = If(TextArea1.Text.Length <= 100, BlackTextColor, RedTextColor)
+		End Sub
+	#tag EndMethod
+
+
 #tag EndWindowCode
 
 #tag Events TextArea1
@@ -132,8 +147,7 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub TextChanged()
-		  Label2.Text = Me.Text.Length.ToString
-		  Label2.TextColor = If(Me.Text.Length <= 100, BlackTextColor, RedTextColor)
+		  UpdateCounterLabel
 		End Sub
 	#tag EndEvent
 #tag EndEvents
